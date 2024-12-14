@@ -17,7 +17,6 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     FocusScope.of(context).requestFocus(FocusNode());
-
     return const LoginScreen();
   }
 }

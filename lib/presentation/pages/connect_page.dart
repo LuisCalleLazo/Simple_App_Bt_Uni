@@ -1,7 +1,5 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
-import 'package:go_router/go_router.dart';
 import 'package:simple_app_bt_uni/presentation/pages/connection_page.dart';
 import 'package:simple_app_bt_uni/presentation/pages/login_page.dart';
 
@@ -28,25 +26,7 @@ class ConnectPage extends StatelessWidget {
         } else if (future.connectionState == ConnectionState.done) {
           return const ItemConnect();
         } else {
-          return SafeArea(
-              child: Scaffold(
-            appBar: AppBar(
-              title: const Text('Connección con dispositivo'),
-            ),
-            body: SelectBondedDevicePage(
-              onCahtPage: (device1) {
-          BluetoothDevice device = device1;
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) {
-                return LoginPage(server: device);
-              },
-            ),
-          );
-              },
-            ),
-          ));
+          return const ItemConnect();
         }
       },
     );
@@ -67,7 +47,15 @@ class ItemConnect extends StatelessWidget {
       ),
       body: SelectBondedDevicePage(
         onCahtPage: (device1) {
-          context.push('/auth/login');
+          BluetoothDevice device = device1;
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) {
+                return LoginPage(server: device);
+              },
+            ),
+          );
         },
       ),
     ));

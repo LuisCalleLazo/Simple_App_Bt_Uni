@@ -20,6 +20,9 @@ class InputDefault extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (controller.text.isEmpty && value != null) {
+      controller.text = value!;
+    }
     controller.text = value ?? "";
     return Padding(
       padding: const EdgeInsetsDirectional.symmetric(
