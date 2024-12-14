@@ -3,7 +3,6 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 
-
 class HomePage extends StatelessWidget {
   static String name = "home";
   const HomePage({super.key});
@@ -14,14 +13,10 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Motocicleta"),
       ),
-      body: ListView(
-        children: [],
-      ),
+      body: BluetoothScreen(),
     );
   }
 }
-
-
 
 class BluetoothScreen extends StatefulWidget {
   @override
@@ -49,7 +44,8 @@ class _BluetoothScreenState extends State<BluetoothScreen> {
 
   void connectToDevice(BluetoothDevice device) async {
     try {
-      var connectionResult = await BluetoothConnection.toAddress(device.address);
+      var connectionResult =
+          await BluetoothConnection.toAddress(device.address);
       setState(() {
         connection = connectionResult;
         isConnected = true;
@@ -76,6 +72,7 @@ class _BluetoothScreenState extends State<BluetoothScreen> {
     if (connection != null && isConnected) {
       connection!.output.add(Uint8List.fromList(command.codeUnits));
       connection!.output.allSent;
+      // ignore: avoid_print
       print('Command sent: $command');
     }
   }
@@ -84,14 +81,16 @@ class _BluetoothScreenState extends State<BluetoothScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('HC-05 Controller'),
+        title: const Text('HC-05 Controller'),
       ),
       body: Column(
         children: [
           ElevatedButton(
             onPressed: () async {
-              List<BluetoothDevice> devices = await bluetooth.getBondedDevices();
+              List<BluetoothDevice> devices =
+                  await bluetooth.getBondedDevices();
               showModalBottomSheet(
+                // ignore: use_build_context_synchronously
                 context: context,
                 builder: (context) {
                   return ListView(
@@ -109,21 +108,21 @@ class _BluetoothScreenState extends State<BluetoothScreen> {
                 },
               );
             },
-            child: Text('Connect to HC-05'),
+            child: const Text('Connect to HC-05'),
           ),
           if (isConnected) ...[
-            Text('Connected to HC-05'),
+            const Text('Connected to HC-05'),
             ElevatedButton(
               onPressed: () => sendCommand('A'),
-              child: Text('Asegurar Moto (A)'),
+              child: const Text('Asegurar Moto (A)'),
             ),
             ElevatedButton(
               onPressed: () => sendCommand('B'),
-              child: Text('Desasegurar Moto (B)'),
+              child: const Text('Desasegurar Moto (B)'),
             ),
             Text('Received Data: $receivedData'),
           ] else
-            Text('Not connected'),
+            const Text('Not connected'),
         ],
       ),
     );
