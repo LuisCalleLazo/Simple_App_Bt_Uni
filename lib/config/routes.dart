@@ -1,14 +1,14 @@
 import 'package:go_router/go_router.dart';
+import 'package:simple_app_bt_uni/presentation/pages/connect_page.dart';
 import 'package:simple_app_bt_uni/presentation/pages/home_page.dart';
-import 'package:simple_app_bt_uni/presentation/pages/login_page.dart';
 
 final appRouter = GoRouter(
-  initialLocation: '/auth/login',
+  initialLocation: '/auth/connect',
   routes: [
     GoRoute(
-      path: '/auth/login',
-      name: LoginPage.name,
-      builder: (context, state) => const LoginPage(),
+      path: '/auth/connect',
+      name: ConnectPage.name,
+      builder: (context, state) => const ConnectPage(),
     ),
     GoRoute(
       path: '/home',
