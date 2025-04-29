@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _setupBluetoothConnection() {
-    BluetoothConnection.toAddress(widget.server?.address).then((_connection) {
+    BluetoothConnection.toAddress("10:06:1C:69:CC:4A").then((_connection) {
       // ignore: avoid_print
       print('Connected to the device');
       setState(() {
@@ -125,7 +125,7 @@ class _HomePageState extends State<HomePage> {
                   const SizedBox(width: 8),
                   FloatingActionButton(
                     mini: true,
-                    onPressed: () => _sendMessage("HOLA CARLA"),
+                    onPressed: () => _sendMessage(textEditingController.text),
                     child: const Icon(Icons.send),
                   ),
                 ],
