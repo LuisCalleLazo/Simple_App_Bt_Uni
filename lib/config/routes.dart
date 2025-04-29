@@ -6,7 +6,7 @@ import 'package:simple_app_bt_uni/presentation/pages/init_page.dart';
 import 'package:simple_app_bt_uni/presentation/pages/list_books_page.dart';
 
 final appRouter = GoRouter(
-  initialLocation: '/',
+  initialLocation: '/auth/connect',
   routes: [
     GoRoute(
       path: '/aphabet_steps',

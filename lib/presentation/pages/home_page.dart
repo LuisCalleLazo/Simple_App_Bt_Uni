@@ -43,6 +43,7 @@ class _HomePageState extends State<HomePage> {
 
   void _setupBluetoothConnection() {
     BluetoothConnection.toAddress(widget.server?.address).then((_connection) {
+      // ignore: avoid_print
       print('Connected to the device');
       setState(() {
         connection = _connection;
@@ -51,8 +52,10 @@ class _HomePageState extends State<HomePage> {
 
       connection!.input?.listen(_onDataReceived).onDone(() {
         if (isDisconnecting) {
+      // ignore: avoid_print
           print('Disconnecting locally!');
         } else {
+      // ignore: avoid_print
           print('Disconnected remotely!');
         }
         if (mounted) {
@@ -60,7 +63,9 @@ class _HomePageState extends State<HomePage> {
         }
       });
     }).catchError((error) {
+      // ignore: avoid_print
       print('Cannot connect, exception occurred');
+      // ignore: avoid_print
       print(error);
     });
   }
@@ -82,7 +87,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      appBar: AppBar(title: const Text("Motocicleta")),
+      appBar: AppBar(title: const Text("Resultados")),
       body: GestureDetector(
         onTap: () {
           // Permite cerrar el teclado tocando en cualquier lugar fuera del campo de texto

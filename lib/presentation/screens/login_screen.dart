@@ -12,8 +12,12 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   late bool isConnecting;
-  final TextEditingController codeController = TextEditingController();
 
+  final TextEditingController codeController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController lastNamePController = TextEditingController();
+  final TextEditingController lastNameMController = TextEditingController();
+  final TextEditingController ciController = TextEditingController();
 
   @override
   void initState() {
@@ -24,66 +28,73 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          // Fondo de imagen
-          Positioned.fill(
-            child: ColorFiltered(
-              colorFilter: ColorFilter.mode(
-                Colors.black.withOpacity(0.7),
-                BlendMode.darken,
-              ),
-              child: Image.asset(
-                'assets/images/background.png',
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-          Column(
+      backgroundColor: Colors.black87, // Fondo sólido
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const Expanded(
-                flex: 4,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 30),
-                  child: Center(
-                    child: Text(
-                      "CONECTATE, PARA ASEGURAR LA SEGURIDAD DE TU MOTOCICLETA",
-                      textAlign: TextAlign.justify,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        fontSize: 40,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Expanded(
-                flex: 1,
-                child: InputDefault(
-                  label: "Ingresa el código",
-                  controller: codeController,
-                  icon: Icons.code,
-                  type: TextInputType.number,
+              const Text(
+                "CONECTATE, PARA INGRESAR COMO ESTUDIANTE",
+                textAlign: TextAlign.justify,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
                   color: Colors.white,
+                  fontSize: 24,
                 ),
               ),
-              Expanded(
-                flex: 4,
-                child: BtnTextDefault(
-                  text: isConnecting ? "Conectando..." : "Iniciar Conexión",
-                  onPressed: () {
-                    
-                    context.push('/home');
-                  },
-                ),
+              const SizedBox(height: 30),
+              InputDefault(
+                label: "Código de estudiante",
+                controller: codeController,
+                icon: Icons.code,
+                type: TextInputType.number,
+                color: Colors.white,
+              ),
+              const SizedBox(height: 10),
+              InputDefault(
+                label: "Nombres",
+                controller: nameController,
+                icon: Icons.person,
+                type: TextInputType.name,
+                color: Colors.white,
+              ),
+              const SizedBox(height: 10),
+              InputDefault(
+                label: "Apellido paterno",
+                controller: lastNamePController,
+                icon: Icons.person_outline,
+                type: TextInputType.name,
+                color: Colors.white,
+              ),
+              const SizedBox(height: 10),
+              InputDefault(
+                label: "Apellido materno",
+                controller: lastNameMController,
+                icon: Icons.person_outline,
+                type: TextInputType.name,
+                color: Colors.white,
+              ),
+              const SizedBox(height: 10),
+              InputDefault(
+                label: "CI",
+                controller: ciController,
+                icon: Icons.credit_card,
+                type: TextInputType.number,
+                color: Colors.white,
+              ),
+              const SizedBox(height: 30),
+              BtnTextDefault(
+                text: isConnecting ? "Conectando..." : "Iniciar Conexión",
+                onPressed: () {
+                  context.push('/home');
+                },
               ),
             ],
           ),
-        ],
+        ),
       ),
     );
-    
   }
-  
 }

@@ -13,10 +13,15 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController codeController = TextEditingController();
-
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(Duration.zero, () {
+      FocusScope.of(context).requestFocus(FocusNode());
+    });
+  }
   @override
   Widget build(BuildContext context) {
-    FocusScope.of(context).requestFocus(FocusNode());
     return const LoginScreen();
   }
 }
