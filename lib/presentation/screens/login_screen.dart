@@ -73,6 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: BtnTextDefault(
                   text: isConnecting ? "Conectando..." : "Iniciar Conexión",
                   onPressed: () {
+                    
                     context.push('/home');
                   },
                 ),
@@ -82,5 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
         ],
       ),
     );
+    
   }
+  
 }
